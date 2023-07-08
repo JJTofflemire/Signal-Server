@@ -10,10 +10,9 @@ services:
       - redis-cluster_data-0:/bitnami/redis/data
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
-    ports:
-      - '127.0.0.1:7000:6379'
+    networks:
+      - signal
       
   redis-node-1:
     image: docker.io/bitnami/redis-cluster:7.0
@@ -21,10 +20,9 @@ services:
       - redis-cluster_data-1:/bitnami/redis/data
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
-    ports:
-      - '127.0.0.1:7001:6379'
+    networks:
+      - signal
 
   redis-node-2:
     image: docker.io/bitnami/redis-cluster:7.0
@@ -32,33 +30,30 @@ services:
       - redis-cluster_data-2:/bitnami/redis/data
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
-    ports:
-      - '127.0.0.1:7002:6379'
-      
+    networks:
+      - signal
+
   redis-node-3:
     image: docker.io/bitnami/redis-cluster:7.0
     volumes:
       - redis-cluster_data-3:/bitnami/redis/data
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
-    ports:
-      - '127.0.0.1:7003:6379'
-      
+    networks:
+      - signal
+
   redis-node-4:
     image: docker.io/bitnami/redis-cluster:7.0
     volumes:
       - redis-cluster_data-4:/bitnami/redis/data
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
-    ports:
-      - '127.0.0.1:7004:6379'
-      
+    networks:
+      - signal
+
   redis-node-5:
     image: docker.io/bitnami/redis-cluster:7.0
     volumes:
@@ -71,24 +66,23 @@ services:
       - redis-node-4
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-#      - 'REDIS_PASSWORD=bitnami'
-      - 'REDISCLI_AUTH=bitnami'
       - 'REDIS_CLUSTER_REPLICAS=1'
       - 'REDIS_NODES=redis-node-0 redis-node-1 redis-node-2 redis-node-3 redis-node-4 redis-node-5'
       - 'REDIS_CLUSTER_CREATOR=yes'
-    ports:
-      - '127.0.0.1:7005:6379'
-      
+    networks:
+      - signal
+
   signal-server:
     image: signal-server
     working_dir: /app/Signal-Server/
     env_file:
       - personal-config/secrets.env
-    ports:
-      - 7006:7006
-    environment:
-      - REDIS_HOST=redis-cluster
-      - REDIS_PORT=7000
+    networks:
+      - signal
+
+networks:
+  signal:
+    driver: bridge
 
 volumes:
   redis-cluster_data-0:
