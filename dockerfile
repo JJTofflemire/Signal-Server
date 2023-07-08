@@ -18,4 +18,4 @@ RUN cd Signal-Server && mvn clean install -DskipTests -Pexclude-spam-filter
 EXPOSE 7006
 
 # Set the entry point command
-CMD jar_file=$(find service/target -name "TextSecureServer*.jar" ! -name "*-tests.jar" | head -n 1) && if [ -n "$jar_file" ] && [ -f "$jar_file" ]; then echo -e "\nStarting Signal-Server using $jar_file\n" && chmod +x personal-config/secrets.sh && ./personal-config/secrets.sh && java -jar -Dsecrets.bundle.filename=personal-config/config-secrets-bundle.yml "$jar_file" server personal-config/config.yml; else echo -e "\nNo valid Signal-Server JAR file found."; fi
+CMD jar_file=$(find service/target -name "TextSecureServer*.jar" ! -name "*-tests.jar" | head -n 1) && if [ -n "$jar_file" ] && [ -f "$jar_file" ]; then echo -e "\nStarting Signal-Server using $jar_file\n" && java -jar -Dsecrets.bundle.filename=personal-config/config-secrets-bundle.yml "$jar_file" server personal-config/config.yml; else echo -e "\nNo valid Signal-Server JAR file found."; fi

@@ -2,3 +2,4 @@
 personal-config/*
 !personal-config/config
 .DS_Store
+Signal-Server

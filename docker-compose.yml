@@ -82,6 +82,8 @@ services:
   signal-server:
     image: signal-server
     working_dir: /app/Signal-Server/
+    env_file:
+      - personal-config/secrets.env
     ports:
       - 7006:7006
     environment:
