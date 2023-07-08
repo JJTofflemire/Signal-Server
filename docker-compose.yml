@@ -79,6 +79,8 @@ services:
       - personal-config/secrets.env
     networks:
       - signal
+    volumes:
+      - ./personal-config:/app/Signal-Server/personal-config
 
 networks:
   signal:

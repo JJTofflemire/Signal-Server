@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends git openjdk-17-
 
 RUN git clone https://github.com/signalapp/Signal-Server.git && cd Signal-Server && git checkout 9c93d37 && cd ..
 
-COPY personal-config/ /app/Signal-Server/personal-config/
 COPY WhisperServerService.java /app/Signal-Server/service/src/main/java/org/whispersystems/textsecuregcm/
 
 RUN cd Signal-Server && mvn clean install -DskipTests -Pexclude-spam-filter
