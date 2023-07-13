@@ -20,15 +20,21 @@ Generate the correct cluster volumes:
 docker-compose -f docker-compose-first-run.yml up -d && docker-compose -f docker-compose-first-run.yml down
 ```
 
+If you call the main `docker-compose.yml` instead of `docker-compose-first-run.yml`, the server will fail with an error related to not being able to connect to the redis cluster
+
+You can fix this by listing all volumes and deleting the ones you just generated:
+
+```
+docker volume ls
+
+docker volume rm -f <name-1>
+docker volume rm -f <name-2>
+etc
+```
+
 ## Configuration
 
-Update all redis sections in `config.yml` to:
-
-```
-  configurationUri: redis://redis-node-5:6379
-```
-
-All configuration is the same as in the main branch, and the `server.jar` file gets called the same way from inside the Docker container
+Folllow [`config-documentation.md` from Main](https://github.com/JJTofflemire/Signal-Server/blob/main/docs/config-documentation.md), and make sure to also follow the [Docker configuration](https://github.com/JJTofflemire/Signal-Server/blob/main/docs/config-documentation.md#dockerized-signal-server-documentation)
 
 ## Starting the container
 
