@@ -51,5 +51,3 @@ To stop the server, run `docker-compose down` even if you you `^C` the `docker-c
 - Fix the weird first docker-compose run needed to generate the correct volumes for the redis-cluster
 
 - Figure out ports and connecting to clients
-
-- Switch to a lighter/quicker to install Docker image that ships with openjdk / maven
