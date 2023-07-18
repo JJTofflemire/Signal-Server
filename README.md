@@ -1,6 +1,6 @@
 # Signal-Server Docker
 
-- A docker container for Signal-Server v9.81.0 running on Debian Bookworm-Slim
+- A docker container for Signal-Server v9.81.0 running on Eclipse Temurin
 
 # Installation
 
