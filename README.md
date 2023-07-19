@@ -17,7 +17,7 @@ If you need to reinstall, first run `docker rmi -f signal-server`
 Generate the correct cluster volumes:
 
 ```
-docker-compose -f docker-compose-first-run.yml up -d && docker-compose -f docker-compose-first-run.yml down
+docker compose -f docker-compose-first-run.yml up -d && docker compose -f docker-compose-first-run.yml down
 ```
 
 If you call the main `docker-compose.yml` instead of `docker-compose-first-run.yml`, the server will fail with an error related to not being able to connect to the redis cluster
@@ -41,13 +41,25 @@ Folllow [`config-documentation.md` from Main](https://github.com/JJTofflemire/Si
 Start the server:
 
 ```
-docker-compose up
+docker compose up
 ```
 
-To stop the server, run `docker-compose down` even if you you `^C` the `docker-compose up`
+## To Do
 
-# To Do
+### Running the server
 
-- Fix the weird first docker-compose run needed to generate the correct volumes for the redis-cluster
+- Convert all localhost configs to a real server (using NGINX) that a client could connect to following [this guide](https://github.com/madeindra/signal-setup-guide/tree/master/signal-server-2.92)
 
-- Figure out ports and connecting to clients
+- Confirm that AWS / Google Cloud function as intended
+
+- See if you can generate the required Bitnami redis-cluster volumes with `docker blah blah blah` instead of using `docker-compose-first-run.yml`
+
+### Extra Credit
+
+- Write scripts for AWS / Google Cloud cli
+
+- Check out a [local DynamoDB Docker instance](https://github.com/madeindra/signal-setup-guide/blob/master/signal-server-5.xx/docker-compose.yml)
+
+- Set up Signal-iOS
+
+- Set up a grep(?) filter to get rid of `datadog` messages
