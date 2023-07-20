@@ -73,7 +73,7 @@ services:
       - signal
 
   signal-server:
-    image: signal-server
+    image: signal-server:1.0
     working_dir: /app/Signal-Server/
     env_file:
       - personal-config/secrets.env

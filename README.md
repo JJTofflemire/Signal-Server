@@ -9,10 +9,10 @@
 Create a `signal-server` Docker image:
 
 ```
-docker build --no-cache -t signal-server .
+docker build --no-cache -t signal-server:1.0 .
 ```
 
-If you need to reinstall, first run `docker rmi -f signal-server`
+If you need to reinstall, first run `docker rmi -f signal-server:1.0`
 
 Generate the correct cluster volumes:
 
@@ -44,6 +44,14 @@ Start the server:
 docker compose up
 ```
 
+### Starting the container with [`filtered-docker-compose.sh`](filtered-docker-compose.sh)
+
+This script just calls a one-liner `docker-compose up --no-log-prefix` and runs it through some `awk` / `sed` filters
+
+- Currently the long datadog failed html output is the only thing omitted (since it throws 100 lines of code every couple of seconds and provides no useful info)
+
+- Also colors the words `INFO`, `WARN`, and `ERROR` to green, orange, and red respectively to make it easier to read the server's logs
+
 ## To Do
 
 ### Running the server
@@ -52,7 +60,7 @@ docker compose up
 
 - Confirm that AWS / Google Cloud function as intended
 
-- See if you can generate the required Bitnami redis-cluster volumes with `docker blah blah blah` instead of using `docker-compose-first-run.yml`
+- Fix the screwy `docker-compose` first run requirement
 
 ### Extra Credit
 
@@ -61,5 +69,3 @@ docker compose up
 - Check out a [local DynamoDB Docker instance](https://github.com/madeindra/signal-setup-guide/blob/master/signal-server-5.xx/docker-compose.yml)
 
 - Set up Signal-iOS
-
-- Set up a grep(?) filter to get rid of `datadog` messages
