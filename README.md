@@ -68,4 +68,4 @@ This script just calls a one-liner `docker-compose up --no-log-prefix` and runs 
 
 - Check out a [local DynamoDB Docker instance](https://github.com/madeindra/signal-setup-guide/blob/master/signal-server-5.xx/docker-compose.yml)
 
-- Set up Signal-iOS
+- Set up Signal-iOS - Divyanshu has started on this, it should be pretty simple
