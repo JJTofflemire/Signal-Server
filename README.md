@@ -62,6 +62,10 @@ This script just calls a one-liner `docker-compose up --no-log-prefix` and runs 
 
 - Fix the screwy `docker-compose` first run requirement
 
+- For "real" deployment, the build container and runtime container should be seperated
+
+    - This should be easy to do with a bash script and two `eclipse temurin` images, but is overkill for now
+
 ### Extra Credit
 
 - Write scripts for AWS / Google Cloud cli
