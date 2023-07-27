@@ -81,8 +81,8 @@ services:
       - signal
     volumes:
       - ./personal-config:/app/Signal-Server/personal-config
-#    ports:
-#      - '127.0.0.1:7000:7000'
+    ports:
+      - '127.0.0.1:7006:7006'
 
 networks:
   signal:
